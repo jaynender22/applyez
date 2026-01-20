@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+app = FastAPI(title="ApplyEZ API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -11,20 +11,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
+@app.get("/health")
 def health():
     return {"status": "ok"}
 
 @app.post("/match")
 def match(payload: dict):
-    return {
-        "selected_experiences": [],
-        "selected_projects": [],
-        "why_these": "Dummy response (wire-up step)",
-        "keywords_used": []
-    }
+    return {"ok": True, "message": "match endpoint wired"}
 
 @app.post("/cover-story")
 def cover_story(payload: dict):
-    return {"rewritten_story": "Dummy rewritten story (wire-up step)"}
+    return {"ok": True, "message": "cover-story endpoint wired"}
+
 
