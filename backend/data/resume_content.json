@@ -1,0 +1,272 @@
+[
+  {
+    "profile": "analyst",
+    "exp_type": "work",
+    "job_title": "Azure Engineer",
+    "company": "Western Alliance Bank (AgreeYa Solutions)",
+    "location": "Boston, MA (Remote)",
+    "point_num": 1,
+    "point_content": "Standardized Dev/UAT/Prod releases for Fusion apps by building Azure DevOps YAML stages and shared templates; cut rollout variance and improved go-live readiness, giving analysts consistent, versioned data-service deployments."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "work",
+    "job_title": "Azure Engineer",
+    "company": "Western Alliance Bank (AgreeYa Solutions)",
+    "location": "Boston, MA (Remote)",
+    "point_num": 2,
+    "point_content": "Automated Prod promotions governance by creating a ServiceNow Standard Change workflow (Python/REST) that opens change requests on Prod deploys, then adding retry-safe change reuse to prevent duplicates and improve traceability."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "work",
+    "job_title": "Azure Engineer",
+    "company": "Western Alliance Bank (AgreeYa Solutions)",
+    "location": "Boston, MA (Remote)",
+    "point_num": 3,
+    "point_content": "Improved pipeline reliability by monitoring daily runs, enforcing unit-test quality gates, and importing Azure resources into Terraform Cloud for drift checks; lowered failures and enabled safe sandbox experimentation via repo sync."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "work",
+    "job_title": "Analyst, Strategy and Analytics",
+    "company": "Deloitte",
+    "location": "Bengaluru, India",
+    "point_num": 1,
+    "point_content": "Defined finance, procurement, and HR KPIs by reviewing report mockups and translating requirements into OTBI/FDI subject areas; aligned metrics to leadership goals and reduced rework by delivering a consistent reporting blueprint."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "work",
+    "job_title": "Analyst, Strategy and Analytics",
+    "company": "Deloitte",
+    "location": "Bengaluru, India",
+    "point_num": 2,
+    "point_content": "Built interactive Oracle FDI/OAC dashboards across supply chain and HR/financial views; increased self-serve visibility and enabled faster executive decisions through drilldowns, trend views, and standardized metric definitions."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "work",
+    "job_title": "Analyst, Strategy and Analytics",
+    "company": "Deloitte",
+    "location": "Bengaluru, India",
+    "point_num": 3,
+    "point_content": "Expanded Oracle semantic models by creating reusable dimensions, hierarchies, and calculated measures; improved report usability and consistency while enabling scalable datasets for new dashboards and ad-hoc requests."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "work",
+    "job_title": "Analyst, Strategy and Analytics",
+    "company": "Deloitte",
+    "location": "Bengaluru, India",
+    "point_num": 4,
+    "point_content": "Improved data integrity by validating KPI logic and source transactions in OTBI, reconciling edge cases with business owners; increased reporting accuracy by ~20% and reduced downstream defects before release to stakeholders."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "project",
+    "job_title": "MBTA Delay Analytics Pipeline, Deploying Analytical Pipelines",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 1,
+    "point_content": "Built a scheduled ingestion-to-reporting pipeline (Airflow → GCS → BigQuery) to publish analytics-ready tables for MBTA KPIs; standardized refresh cadence and reduced manual report prep by delivering curated datasets on time."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "project",
+    "job_title": "MBTA Delay Analytics Pipeline, Deploying Analytical Pipelines",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 2,
+    "point_content": "Simplified messy transit feeds by creating an HTTP Cloud Function to flatten nested JSON, infer schema, and load BigQuery landing tables; improved join consistency across routes, trips, and predictions for reliable analysis."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "project",
+    "job_title": "MBTA Delay Analytics Pipeline, Deploying Analytical Pipelines",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 3,
+    "point_content": "To support delay-risk decisions, trained an XGBoost classifier (Acc 0.784, Recall 0.69) and shipped a Streamlit + BigQuery dashboard; surfaced route/time risk and top drivers, enabling targeted operational interventions."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "project",
+    "job_title": "Customer Segmentation in E-Commerce, Unsupervised Machine Learning",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 1,
+    "point_content": "Built RFM cohorts refined with PCA + K-Means and mined cross-sell affinities using Apriori; translated insights into churn-prevention and higher-spend campaigns and ranked bundle candidates for targeted promotions."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "project",
+    "job_title": "Customer Segmentation in E-Commerce, Unsupervised Machine Learning",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 2,
+    "point_content": "Developed an assortment map using TF-IDF + LDA on product text and published Tableau views; enabled self-serve category performance analysis to improve discoverability and portfolio planning."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "project",
+    "job_title": "NCAA Basketball Player Performance in the NBA, Business Analytics Toolbox",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 1,
+    "point_content": "Built a BigQuery ELT pipeline on NCAA/NBA datasets by cleaning multi-season tables, standardizing player IDs, and engineering SQL features; delivered analytics-ready tables to support season comparisons and consistent KPI definitions."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "project",
+    "job_title": "NCAA Basketball Player Performance in the NBA, Business Analytics Toolbox",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 2,
+    "point_content": "Operationalized clustering inputs in Vertex AI by generating PCA-ready feature matrices from BigQuery and validating schema/feature consistency; enabled repeatable player-archetype runs and faster iteration on segmentation for analysis."
+  },
+  {
+    "profile": "analyst",
+    "exp_type": "project",
+    "job_title": "NCAA Basketball Player Performance in the NBA, Business Analytics Toolbox",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 3,
+    "point_content": "Delivered insightful Tableau dashboards on GCP by publishing curated BigQuery views and setting refreshable extracts; enabled stakeholders to track player archetypes, trends, and performance KPIs without manual data pulls."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "work",
+    "job_title": "Azure Engineer",
+    "company": "Western Alliance Bank (AgreeYa Solutions)",
+    "location": "Boston, MA (Remote)",
+    "point_num": 1,
+    "point_content": "Standardized releases for data services by building Azure DevOps YAML CI/CD (build/test/deploy) with shared templates across Dev/UAT/Prod, improving deployment consistency and reducing production risk for Fusion-integrated pipelines."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "work",
+    "job_title": "Azure Engineer",
+    "company": "Western Alliance Bank (AgreeYa Solutions)",
+    "location": "Boston, MA (Remote)",
+    "point_num": 2,
+    "point_content": "Automated Prod promotions governance by creating a ServiceNow Standard Change workflow (Python/REST) that opens change requests on Prod deploys, then adding retry-safe change reuse to prevent duplicates and improve traceability."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "work",
+    "job_title": "Azure Engineer",
+    "company": "Western Alliance Bank (AgreeYa Solutions)",
+    "location": "Boston, MA (Remote)",
+    "point_num": 3,
+    "point_content": "Reduced infrastructure drift for data environments by using Terraform to import existing Azure resources and validate state in Terraform Cloud, enabling reviewable infrastructure changes and improving reliability for pipeline dependencies."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "work",
+    "job_title": "Analyst, Strategy and Analytics",
+    "company": "Deloitte",
+    "location": "Bengaluru, India",
+    "point_num": 1,
+    "point_content": "Translated KPI mockups into data definitions by mapping requirements to Oracle Fusion OTBI/FDI subject areas across Finance, Procurement, and HR, aligning metrics to business goals and reducing rework from inconsistent metrics."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "work",
+    "job_title": "Analyst, Strategy and Analytics",
+    "company": "Deloitte",
+    "location": "Bengaluru, India",
+    "point_num": 2,
+    "point_content": "Built semantic models by expanding Oracle’s semantic layers with standardized dimensions, hierarchies, and measures, enabling self-serve analytics and improving dashboard consistency across supply chain, HR, and financial reporting."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "work",
+    "job_title": "Analyst, Strategy and Analytics",
+    "company": "Deloitte",
+    "location": "Bengaluru, India",
+    "point_num": 3,
+    "point_content": "Delivered cloud analytics datasets in Oracle Fusion Data Intelligence by modeling subject-area extracts into visualizations, cutting manual Excel refresh by 10 hrs/week and reducing KPI latency from weekly reporting cycles to daily."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "work",
+    "job_title": "Analyst, Strategy and Analytics",
+    "company": "Deloitte",
+    "location": "Bengaluru, India",
+    "point_num": 4,
+    "point_content": "Improved data quality and trust by validating OTBI outputs against transactional sources, documenting reconciliation rules, and tightening data checks, increasing reporting accuracy and reliability by 20% for cross-functional stakeholders."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "project",
+    "job_title": "MBTA Delay Analytics Pipeline, Deploying Analytical Pipelines",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 1,
+    "point_content": "Built an Airflow ingestion pipeline to pull MBTA API data into GCS, transform to curated BigQuery tables, and schedule automated backfills, enabling repeatable analytics datasets and reliable downstream consumption."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "project",
+    "job_title": "MBTA Delay Analytics Pipeline, Deploying Analytical Pipelines",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 2,
+    "point_content": "Developed a GCP HTTP Cloud Function to flatten nested JSON, infer schemas, and load BigQuery landing tables with stable keys, reducing manual wrangling and improving join consistency across routes, trips, and predictions."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "project",
+    "job_title": "MBTA Delay Analytics Pipeline, Deploying Analytical Pipelines",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 3,
+    "point_content": "Operationalized ML outputs for stakeholders by publishing XGBoost delay predictions to BigQuery and building a Streamlit dashboard, enabling route/time risk monitoring and surfacing top delay drivers using model feature importance."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "project",
+    "job_title": "NCAA Basketball Player Performance in the NBA, Business Analytics Toolbox",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 1,
+    "point_content": "Built a BigQuery ELT pipeline on NCAA/NBA public datasets by cleaning multi-season tables, standardizing player identifiers, and engineering features in SQL, producing analytics-ready tables for modeling and season comparisons."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "project",
+    "job_title": "NCAA Basketball Player Performance in the NBA, Business Analytics Toolbox",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 2,
+    "point_content": "Operationalized modeling datasets in Vertex AI by generating PCA-ready feature matrices from BigQuery and validating schema/feature consistency, enabling repeatable clustering runs and faster iteration on player archetype segmentation."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "project",
+    "job_title": "NCAA Basketball Player Performance in the NBA, Business Analytics Toolbox",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 3,
+    "point_content": "Delivered Tableau reporting on GCP by publishing curated BigQuery views and connecting Tableau for refreshable dashboards, enabling self-serve analysis of player archetypes, trends, and performance KPIs without manual extracts."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "project",
+    "job_title": "Airbnb Price Prediction, Supervised Machine Learning",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 1,
+    "point_content": "Built a Python ETL pipeline to ingest Airbnb listings data, run schema validation and cleaning, and publish a modeling-ready dataset, reducing manual preprocessing and ensuring consistent inputs for downstream training."
+  },
+  {
+    "profile": "data_engineer",
+    "exp_type": "project",
+    "job_title": "Airbnb Price Prediction, Supervised Machine Learning",
+    "company": "Boston University",
+    "location": "Questrom School of Business, Boston, MA",
+    "point_num": 2,
+    "point_content": "Created a reusable scikit-learn feature pipeline (encoding, scaling, imputation) and trained a Gradient Boosting Regressor (RMSE 0.36, R² 0.72), surfacing top pricing drivers to support reliable pricing recommendations."
+  }
+]

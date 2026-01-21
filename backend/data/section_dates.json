@@ -1,0 +1,12 @@
+{
+  "work": {
+    "Azure Engineer": {"start": "2025-06-01", "end": "2025-12-31"},
+    "Analyst, Strategy and Analytics": {"start": "2022-09-01", "end": "2024-08-31"}
+  },
+  "project": {
+    "MBTA Delay Analytics Pipeline, Deploying Analytical Pipelines": {"start": "2025-09-01", "end": "2025-12-31"},
+    "NCAA Basketball Player Performance in the NBA, Business Analytics Toolbox": {"start": "2024-10-01", "end": "2024-12-31"},
+    "Customer Segmentation in E-Commerce, Unsupervised Machine Learning": {"start": "2024-09-01", "end": "2024-10-31"},
+    "Airbnb Price Prediction, Supervised Machine Learning": {"start": "2024-07-01", "end": "2024-08-31"}
+  }
+}

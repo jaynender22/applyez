@@ -1,161 +1,201 @@
-    "use client";
+"use client";
 
-    import { useState } from "react";
-    import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-    import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-    import { Textarea } from "@/components/ui/textarea";
-    import { Button } from "@/components/ui/button";
+import { useEffect, useMemo, useState } from "react";
+import { ResumePaper } from "@/components/ResumePaper";
+import { ResumeTemplate } from "@/components/ResumeTemplate";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
-    const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://127.0.0.1:9000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://127.0.0.1:9000";
 
-    export default function Home() {
-    const [jd1, setJd1] = useState("");
-    const [matchResult, setMatchResult] = useState<any>(null);
-    const [matchLoading, setMatchLoading] = useState(false);
-    const [matchError, setMatchError] = useState<string | null>(null);
+type Bullet = { point_num: number; text: string };
+type SectionItem = {
+  job_title: string;
+  company: string;
+  location: string;
+  bullets: Bullet[];
+  dates?: { start: string; end: string } | null;
+};
 
-    const [jd2, setJd2] = useState("");
-    const [story, setStory] = useState("");
-    const [storyResult, setStoryResult] = useState<any>(null);
-    const [storyLoading, setStoryLoading] = useState(false);
-    const [storyError, setStoryError] = useState<string | null>(null);
+type ResumeResponse = {
+  work: SectionItem[];
+  project: SectionItem[];
+};
 
-    async function runMatch() {
-        setMatchLoading(true);
-        setMatchError(null);
-        setMatchResult(null);
+type MatchOrder = {
+  job_title: string;
+  bullet_order: number[];
+};
 
-        try {
-        const res = await fetch(`${API_BASE}/match`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ job_description: jd1 }),
-        });
+type MatchResponse = {
+  profile: string;
+  keywords_used: string[];
+  work: MatchOrder[];
+  projects: MatchOrder[];
+};
 
+export default function Home() {
+  const [profile] = useState<"data_engineer">("data_engineer");
+
+  const [resume, setResume] = useState<ResumeResponse | null>(null);
+  const [resumeLoading, setResumeLoading] = useState(false);
+  const [resumeError, setResumeError] = useState<string | null>(null);
+
+  const [jd, setJd] = useState("");
+  const [match, setMatch] = useState<MatchResponse | null>(null);
+  const [matchLoading, setMatchLoading] = useState(false);
+  const [matchError, setMatchError] = useState<string | null>(null);
+
+  // 1) Load resume content once
+  useEffect(() => {
+    async function loadResume() {
+      setResumeLoading(true);
+      setResumeError(null);
+
+      try {
+        const res = await fetch(`${API_BASE}/resume?profile=${profile}`);
         if (!res.ok) throw new Error(await res.text());
-        setMatchResult(await res.json());
-        } catch (e: any) {
-        setMatchError(e.message || "Something went wrong");
-        } finally {
-        setMatchLoading(false);
-        }
+        const data = (await res.json()) as ResumeResponse;
+        setResume(data);
+      } catch (e: any) {
+        setResumeError(e.message || "Failed to load resume");
+      } finally {
+        setResumeLoading(false);
+      }
     }
 
-    async function runCoverStory() {
-        setStoryLoading(true);
-        setStoryError(null);
-        setStoryResult(null);
+    loadResume();
+  }, [profile]);
 
-        try {
-        const res = await fetch(`${API_BASE}/cover-story`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ job_description: jd2, my_story: story }),
-        });
+  // 2) Generate ordering (reorder bullets + pick top 2 projects)
+  async function runMatch() {
+    setMatchLoading(true);
+    setMatchError(null);
+    setMatch(null);
 
-        if (!res.ok) throw new Error(await res.text());
-        setStoryResult(await res.json());
-        } catch (e: any) {
-        setStoryError(e.message || "Something went wrong");
-        } finally {
-        setStoryLoading(false);
-        }
+    try {
+      const res = await fetch(`${API_BASE}/match`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ profile, job_description: jd }),
+      });
+
+      if (!res.ok) throw new Error(await res.text());
+      const data = (await res.json()) as MatchResponse;
+      setMatch(data);
+    } catch (e: any) {
+      setMatchError(e.message || "Failed to generate match");
+    } finally {
+      setMatchLoading(false);
     }
+  }
 
-    return (
-        <main className="mx-auto max-w-3xl p-6">
+  const keywordsPreview = useMemo(() => {
+    if (!match?.keywords_used?.length) return "";
+    return match.keywords_used.join(", ");
+  }, [match]);
+
+  return (
+    <main className="min-h-screen bg-neutral-100">
+      <div className="mx-auto max-w-6xl p-6">
         <div className="mb-6">
-            <h1 className="text-2xl font-semibold">ApplyEZ</h1>
-            <p className="text-sm text-muted-foreground">
-            Paste the JD and generate best-fit bullets + a cover story.
-            </p>
+          <h1 className="text-2xl font-semibold">ApplyEZ</h1>
+          <p className="text-sm text-muted-foreground">
+            Paste the job description → backend reorders bullets + selects top 2 projects.
+          </p>
         </div>
 
-        <Tabs defaultValue="match" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="match">Best-fit Experience</TabsTrigger>
-            <TabsTrigger value="story">Cover Story</TabsTrigger>
-            </TabsList>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {/* LEFT: controls */}
+          <div className="space-y-6">
+            <Tabs defaultValue="resume" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="resume">Resume Match</TabsTrigger>
+                <TabsTrigger value="story">Cover Story</TabsTrigger>
+              </TabsList>
 
-            <TabsContent value="match" className="mt-4">
-            <Card>
-                <CardHeader>
-                <CardTitle>Job Description</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                <Textarea
-                    value={jd1}
-                    onChange={(e) => setJd1(e.target.value)}
-                    placeholder="Paste the job description here..."
-                    className="min-h-[180px]"
-                />
+              {/* Resume Match tab */}
+              <TabsContent value="resume" className="mt-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Job Description</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <Textarea
+                      value={jd}
+                      onChange={(e) => setJd(e.target.value)}
+                      placeholder="Paste the job description here..."
+                      className="min-h-[220px]"
+                    />
 
-                <Button onClick={runMatch} disabled={!jd1.trim() || matchLoading}>
-                    {matchLoading ? "Generating..." : "Generate best-fit bullets"}
-                </Button>
+                    <Button
+                      onClick={runMatch}
+                      disabled={!jd.trim() || matchLoading || resumeLoading || !resume}
+                      className="w-full"
+                    >
+                      {matchLoading ? "Generating..." : "Generate best-fit ordering"}
+                    </Button>
 
-                {matchError && (
-                    <div className="rounded-md border p-3 text-sm">
-                    <b>Error:</b> {matchError}
-                    </div>
-                )}
+                    {resumeLoading && (
+                      <div className="rounded-md border bg-white p-3 text-sm">
+                        Loading resume content...
+                      </div>
+                    )}
 
-                {matchResult && (
-                    <div className="rounded-md border p-3">
-                    <div className="text-sm font-medium mb-2">Result</div>
-                    <pre className="text-xs whitespace-pre-wrap">
-                        {JSON.stringify(matchResult, null, 2)}
-                    </pre>
-                    </div>
-                )}
-                </CardContent>
-            </Card>
-            </TabsContent>
+                    {resumeError && (
+                      <div className="rounded-md border bg-white p-3 text-sm">
+                        <b>Resume load error:</b> {resumeError}
+                      </div>
+                    )}
 
-            <TabsContent value="story" className="mt-4">
-            <Card>
-                <CardHeader>
-                <CardTitle>Cover Story</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                <Textarea
-                    value={jd2}
-                    onChange={(e) => setJd2(e.target.value)}
-                    placeholder="Paste the job description here..."
-                    className="min-h-[140px]"
-                />
-                <Textarea
-                    value={story}
-                    onChange={(e) => setStory(e.target.value)}
-                    placeholder="Paste your story here..."
-                    className="min-h-[140px]"
-                />
+                    {matchError && (
+                      <div className="rounded-md border bg-white p-3 text-sm">
+                        <b>Match error:</b> {matchError}
+                      </div>
+                    )}
 
-                <Button
-                    onClick={runCoverStory}
-                    disabled={!jd2.trim() || !story.trim() || storyLoading}
-                >
-                    {storyLoading ? "Rewriting..." : "Rewrite story"}
-                </Button>
+                    {!!keywordsPreview && (
+                      <div className="rounded-md border bg-white p-3 text-sm">
+                        <b>Keywords used:</b> {keywordsPreview}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </TabsContent>
 
-                {storyError && (
-                    <div className="rounded-md border p-3 text-sm">
-                    <b>Error:</b> {storyError}
-                    </div>
-                )}
+              {/* Cover Story tab (placeholder for now) */}
+              <TabsContent value="story" className="mt-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Cover Story (next)</CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-sm text-muted-foreground">
+                    We’ll wire this next after the resume layout is perfect. Same idea:
+                    JD + your story → backend returns rewritten story.
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
 
-                {storyResult && (
-                    <div className="rounded-md border p-3">
-                    <div className="text-sm font-medium mb-2">Output</div>
-                    <pre className="text-xs whitespace-pre-wrap">
-                        {JSON.stringify(storyResult, null, 2)}
-                    </pre>
-                    </div>
-                )}
-                </CardContent>
-            </Card>
-            </TabsContent>
-        </Tabs>
-        </main>
-    );
-    }
+          {/* RIGHT: resume preview */}
+          <div>
+            {resume ? (
+              <ResumePaper>
+                <ResumeTemplate resume={resume} match={match} />
+              </ResumePaper>
+            ) : (
+              <div className="rounded-md border bg-white p-4 text-sm">
+                {resumeLoading ? "Loading resume..." : "Resume not loaded yet."}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+
