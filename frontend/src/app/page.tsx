@@ -109,7 +109,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* LEFT: controls */}
-          <div className="space-y-6">
+          <div className="no-print space-y-6">
             <Tabs defaultValue="resume" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="resume">Resume Match</TabsTrigger>
@@ -184,7 +184,7 @@ export default function Home() {
           <div>
             {resume ? (
               <ResumePaper>
-                <ResumeTemplate resume={resume} match={match} />
+                <ResumeTemplate resume={resume} match={match} profile={profile} />
               </ResumePaper>
             ) : (
               <div className="rounded-md border bg-white p-4 text-sm">

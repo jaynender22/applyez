@@ -4,18 +4,23 @@ export function ResumePaper({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex justify-center bg-neutral-200 py-8">
       <div
-        className="bg-white text-black shadow-lg"
+        className="paper bg-white text-black shadow-lg"
         style={{
-          width: "8.5in",
-          height: "11in",
-          padding: "0.55in",
+          width: "210mm",      // A4 width
+          minHeight: "297mm",     // A4 height
+          padding: "12mm",     // ~0.7in margin (common resume margin)
           boxSizing: "border-box",
           fontFamily: "Calibri, Arial, sans-serif",
           fontSize: "11pt",
           lineHeight: "1.15",
-          overflow: "hidden",
+          overflow: "visible",
+          WebkitFontSmoothing: "antialiased",
+          textRendering: "geometricPrecision",
+          border: "2px solid red",
+
         }}
       >
+        <div style={{ border: "2px dashed blue", height: "100%", boxSizing: "border-box" }}></div>
         {children}
       </div>
     </div>
