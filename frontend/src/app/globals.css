@@ -77,7 +77,7 @@ body {
 @media print {
   @page {
     /* Match the on-screen preview */
-    size: A4;
+    size: letter;
     margin: 0;
   }
 
