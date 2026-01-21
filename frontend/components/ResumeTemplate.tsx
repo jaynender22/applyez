@@ -181,7 +181,7 @@ export function ResumeTemplate({
     <div>
       {/* HEADER (fixed) */}
       <div className="text-center" style={sectionWrapStyle("purple")}>
-        <div style={{ fontWeight: 700, letterSpacing: 0.3 }}>JAYNENDER SINGH</div>
+        <div style={{ fontWeight: 700, letterSpacing: 0.3, fontSize: "14pt" }}>JAYNENDER SINGH</div>
         <div style={{ marginTop: 2, fontSize: "10.5pt" }}>
           Boston, MA | +1 (857) 540-4315 | jay22@bu.edu | linkedin.com/in/jaynender-singh/
         </div>
