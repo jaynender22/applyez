@@ -76,8 +76,8 @@ body {
 
 @media print {
   @page {
-    /* Your screenshot is US Letter */
-    size: letter;
+    /* Match the on-screen preview */
+    size: A4;
     margin: 0;
   }
 

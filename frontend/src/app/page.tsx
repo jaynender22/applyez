@@ -98,23 +98,26 @@ export default function Home() {
   }, [match]);
 
   return (
-    <main className="min-h-screen bg-neutral-100">
-      <div className="mx-auto max-w-6xl p-6">
-        <div className="mb-6">
+    <main className="h-screen bg-neutral-100">
+      <div className="flex h-full flex-col">
+        {/* Header */}
+        <div className="no-print border-b bg-white px-6 py-4">
           <h1 className="text-2xl font-semibold">ApplyEZ</h1>
           <p className="text-sm text-muted-foreground">
             Paste the job description → backend reorders bullets + selects top 2 projects.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {/* LEFT: controls */}
-          <div className="no-print space-y-6">
-            <Tabs defaultValue="resume" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="resume">Resume Match</TabsTrigger>
-                <TabsTrigger value="story">Cover Story</TabsTrigger>
-              </TabsList>
+        {/* Body */}
+        <div className="flex-1 overflow-hidden">
+          <div className="flex h-full flex-col lg:flex-row">
+            {/* LEFT: controls */}
+            <div className="no-print w-full shrink-0 overflow-y-auto border-b bg-neutral-50 p-6 lg:w-[520px] lg:border-b-0 lg:border-r">
+              <Tabs defaultValue="resume" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="resume">Resume Match</TabsTrigger>
+                  <TabsTrigger value="story">Cover Story</TabsTrigger>
+                </TabsList>
 
               {/* Resume Match tab */}
               <TabsContent value="resume" className="mt-4">
@@ -177,20 +180,21 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </TabsContent>
-            </Tabs>
-          </div>
+              </Tabs>
+            </div>
 
-          {/* RIGHT: resume preview */}
-          <div>
-            {resume ? (
-              <ResumePaper>
-                <ResumeTemplate resume={resume} match={match} profile={profile} />
-              </ResumePaper>
-            ) : (
-              <div className="rounded-md border bg-white p-4 text-sm">
-                {resumeLoading ? "Loading resume..." : "Resume not loaded yet."}
-              </div>
-            )}
+            {/* RIGHT: resume preview */}
+            <div className="flex-1 overflow-y-auto bg-neutral-200 p-6">
+              {resume ? (
+                <ResumePaper>
+                  <ResumeTemplate resume={resume} match={match} profile={profile} />
+                </ResumePaper>
+              ) : (
+                <div className="rounded-md border bg-white p-4 text-sm">
+                  {resumeLoading ? "Loading resume..." : "Resume not loaded yet."}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

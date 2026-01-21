@@ -1,25 +1,50 @@
-import React from "react";
+"use client";
 
-/**
- * Printable “paper” wrapper for the resume preview.
- * This is the container that should feel like a Word/PDF page.
- */
+import React, { useEffect, useMemo, useRef, useState } from "react";
+
 export function ResumePaper({ children }: { children: React.ReactNode }) {
+  // A4 at 96dpi (CSS px): 210mm x 297mm
+  const PAPER_W = 794; // ~793.7
+  const PAPER_H = 1123; // ~1122.5
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [containerWidth, setContainerWidth] = useState<number>(0);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const el = containerRef.current;
+    const ro = new ResizeObserver((entries) => {
+      const w = entries[0]?.contentRect?.width ?? 0;
+      setContainerWidth(w);
+    });
+
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const scale = useMemo(() => {
+    const usable = Math.max(0, containerWidth - 48);
+    if (!usable) return 1;
+    return Math.min(1, usable / PAPER_W);
+  }, [containerWidth]);
+
   return (
-    <div className="flex justify-center bg-neutral-200 py-8">
+    <div ref={containerRef} className="flex justify-center">
       <div
         className="paper bg-white text-black shadow-lg"
         style={{
-          width: "8.5in", // US Letter width
-          minHeight: "11in", // US Letter height
-          padding: "0.55in", // similar to your screenshot
+          width: `${PAPER_W}px`,
+          minHeight: `${PAPER_H}px`,
+          padding: "42px", // ~15mm
           boxSizing: "border-box",
           fontFamily: 'Calibri, "Carlito", Arial, sans-serif',
           fontSize: "11pt",
           lineHeight: "1.15",
-          overflow: "visible",
           WebkitFontSmoothing: "antialiased",
           textRendering: "geometricPrecision",
+          transform: `scale(${scale})`,
+          transformOrigin: "top center",
         }}
       >
         {children}
@@ -27,4 +52,5 @@ export function ResumePaper({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
 
